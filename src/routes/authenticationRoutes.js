@@ -1,10 +1,8 @@
 import express from "express"
-
+import AuthenticationController from "../controllers/AuthenticationController.js";
 const authRoutes = express.Router()
 
-authRoutes.post("/", (req, res) => {
-    res.send(`The user ${req.body.email._value} was registered!`)
-})
+authRoutes.post("/", AuthenticationController.register)
 
 
 export default authRoutes
