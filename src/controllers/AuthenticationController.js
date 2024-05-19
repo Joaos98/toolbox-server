@@ -4,8 +4,8 @@ const AuthenticationController = {
     async register(req, res) {
         try {
             const credentials = {
-                email: req.body.email._value,
-                password: req.body.password._value
+                email: req.body.email,
+                password: req.body.password
             };
             const user = await db.User.create(credentials)
             res.status(200).send(user.toJSON())
