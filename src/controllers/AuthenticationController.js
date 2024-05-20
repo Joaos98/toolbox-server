@@ -18,7 +18,6 @@ const AuthenticationController = {
                 error: errorMessage
             })
         }
-
     }
 }
 
