@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.use('/notes', notesRoutes);
-app.use('/authenticate', authRoutes)
+app.use('/auth', authRoutes)
 
 db.sequelize.sync()
     .then(() => {

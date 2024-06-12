@@ -13,4 +13,8 @@ const dbConfig = {
     }
 }
 
-export {config, dbConfig};
+const authConfig = {
+    jwtSecret: process.env.JWT_SECRET || 'secret'
+}
+
+export {config, dbConfig, authConfig};
