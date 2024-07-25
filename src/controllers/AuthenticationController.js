@@ -56,6 +56,17 @@ const AuthenticationController = {
                 error: "Something went wrong!"
             })
         }
+    },
+    async verify(req, res) {
+        const token = req.header('Authorization').replace('Bearer ', '')
+        try {
+            jwt.verify(token, authConfig.jwtSecret)
+            res.status(200).send()
+        } catch (error) {
+            res.status(401).send({
+                error: "User Unauthorized"
+            })
+        }
     }
 }
 

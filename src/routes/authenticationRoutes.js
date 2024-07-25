@@ -10,6 +10,8 @@ authRoutes.post("/register",
 authRoutes.post("/login",
     AuthenticationController.login
 )
-
+authRoutes.get("/verify",
+    AuthenticationController.verify
+)
 
 export default authRoutes
