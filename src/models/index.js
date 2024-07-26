@@ -2,6 +2,7 @@ import {Sequelize, DataTypes} from "sequelize";
 import {dbConfig} from "../config/config.js";
 import UserSeq from "./User.js";
 import NoteSeq from "./Note.js";
+import WorkoutSeq from "./Workout.js";
 
 const sequelize = new Sequelize(
     dbConfig.database,
@@ -18,6 +19,7 @@ const db = {
 //Initializing Sequelize Models
 UserSeq(sequelize, DataTypes)
 NoteSeq(sequelize, DataTypes)
+WorkoutSeq(sequelize, DataTypes)
 
 //Inserting Sequelize Models in our db object
 Object.entries(sequelize.models).forEach(model => {
@@ -25,6 +27,7 @@ Object.entries(sequelize.models).forEach(model => {
 })
 //Creating associations
 db["User"].hasMany(db["Note"], {foreignKey: "userId"})
-db["Note"].belongsTo(db["User"])
+db["User"].hasMany(db["Workout"], {foreignKey: "userId"})
+//db["Note"].belongsTo(db["User"])
 
 export default db

@@ -6,6 +6,7 @@ import notesRoutes from "./routes/notesRoutes.js";
 import authRoutes from "./routes/authenticationRoutes.js";
 import db from "./models/index.js";
 import {config} from "./config/config.js";
+import fitnessRoutes from "./routes/fitnessRoutes.js";
 
 const app = express();
 app.use(morgan('combined'))
@@ -14,10 +15,10 @@ app.use(cors())
 
 app.use('/notes', notesRoutes);
 app.use('/auth', authRoutes)
+app.use('/fitness', fitnessRoutes)
 
 db.sequelize.sync()
     .then(() => {
-
         app.listen(config.port)
         console.log(`Server started on port ${config.port}`)
     })
