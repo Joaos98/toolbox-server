@@ -1,6 +1,7 @@
 import db from "../models/index.js"
 import jwt from "jsonwebtoken"
 import {authConfig} from "../config/config.js"
+import FitnessController from "./FitnessController.js";
 
 function jwtSignUser(user) {
     const ONE_WEEK = 60*60*24*7
@@ -18,6 +19,7 @@ const AuthenticationController = {
             };
             const user = await db.User.create(credentials)
             const userJson = user.toJSON()
+            await FitnessController.createUserMeasurementParameters(user.id)
             res.send({
                 user: userJson,
                 token: jwtSignUser(userJson)
@@ -68,6 +70,7 @@ const AuthenticationController = {
             })
         }
     }
+    //TODO: deleteUser, also remember to delete userMeasurementParameters and everything else associated with that user.
 }
 
 export default AuthenticationController
