@@ -6,7 +6,8 @@ const FitnessController = {
             const workouts = await db.Workout.findAll({
                 where: {
                     userId: req.query.userId
-                }
+                },
+                order: [['date', 'DESC']]
             })
             res.status(200).send(workouts)
         } catch (err) {
@@ -41,7 +42,8 @@ const FitnessController = {
             const measurements = await db.BodyCompositionMeasurements.findAll({
                 where: {
                     userId: req.query.userId
-                }
+                },
+                order: [['date', 'DESC']]
             })
             res.status(200).send(measurements)
         } catch (err) {
